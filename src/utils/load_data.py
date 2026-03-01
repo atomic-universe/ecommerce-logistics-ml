@@ -6,7 +6,7 @@ from credentials  import database_connection_credentials as connectivity_info
 
 tables = ['customers','geolocation','order_items','order_payments','order_reviews','orders','product_category_name_translation','products','sellers'] 
 
-
+conn = None
 
 try:
     username = connectivity_info['username']
@@ -42,7 +42,8 @@ try:
         print(f'{table} saved successfully.')
 
 
-
+    del conn
+    
 except OSError as e:
     print("Check the save path exist or not.")
 
