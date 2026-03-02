@@ -4,6 +4,7 @@ import os
 # import mysql connectivity credentials 
 from credentials  import database_connection_credentials as connectivity_info
 
+# tables = ['customers','geolocation','order_items','order_payments','order_reviews','orders','product_category_name_translation','products','sellers'] 
 tables = ['customers','geolocation','order_items','order_payments','order_reviews','orders','product_category_name_translation','products','sellers'] 
 
 conn = None
@@ -38,12 +39,12 @@ try:
 
     for table in tables:
         
-        dataframes[table].to_csv(f"./data/raw/{table}.csv")
+        dataframes[table].to_csv(f"./data/raw/{table}.csv",index=False)
         print(f'{table} saved successfully.')
 
 
     del conn
-    
+
 except OSError as e:
     print("Check the save path exist or not.")
 

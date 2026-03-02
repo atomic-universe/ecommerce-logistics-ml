@@ -5,8 +5,8 @@ notebook\ipynb_checkpoints
 \env
 .env
 
-.data
-.data\*
+data
+data\*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
