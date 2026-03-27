@@ -5,7 +5,7 @@ import os
 from credentials  import database_connection_credentials as connectivity_info
 
 # tables = ['customers','geolocation','order_items','order_payments','order_reviews','orders','product_category_name_translation','products','sellers'] 
-tables = ['customers','geolocation','order_items','order_payments','order_reviews','orders','product_category_name_translation','products','sellers'] 
+tables = ['customers','geolocation','order_items','order_payments','order_reviews','orders','product_category_name_translation','products','sellers','leads_closed','leads_qualified'] 
 
 conn = None
 
