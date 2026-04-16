@@ -116,7 +116,8 @@ class Training_pipeline():
         return (output_data.drop(columns='delivery_days'),output_data['delivery_days'])
         
     def process(self):
-        self.__clean_data()       
+        self.__clean_data()  
+             
         self.__transform()
         
    
