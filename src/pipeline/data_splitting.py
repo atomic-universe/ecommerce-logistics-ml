@@ -165,7 +165,7 @@ class Data_Pipline:
         delivered_seller = delivered_orders.merge(self.dataset['order_items'][['order_id','seller_id','shipping_limit_date']],on='order_id',how='left',validate='1:m')
         delivered_seller['shipping_limit_date'] = pd.to_datetime(delivered_seller['shipping_limit_date'])
         seller_shippingDate_differenceby_limitDate = (delivered_seller['shipping_limit_date'] -  delivered_seller['order_delivered_carrier_date'] )
-        zero_time = timedelta(0)
+        zero_time = timedelta(0) 
 
 
         # feature of seller_dispach_on_time or not?
