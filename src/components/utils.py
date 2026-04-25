@@ -1,6 +1,10 @@
 import streamlit as st
 import os
 import pandas as pd
+import joblib
+import numpy as np
+ 
+
 def navigator():
     # ── Page Navigation ───────────────────────────────────────────────────────────
     st.markdown('<div class="section-header">Navigate Dashboard</div>', unsafe_allow_html=True)
@@ -71,3 +75,91 @@ def load_processed_data(data_path='data/processed'):
         return None
 
     return data
+
+
+
+
+
+
+
+
+
+
+
+# delivery prediction model
+
+
+
+def calculate_distance(lat1,lng1,lat2,lng2):
+    
+
+    # Calucate the difference.
+    dlat = lat2 - lat1
+    dlng = lng2 - lng1
+    
+    a = (np.sin(dlat/2)**2) + np.cos(lat1) * np.cos(lat2) * np.sin(dlng/2)**2
+
+    c =  2 * np.asin(np.sqrt(a))
+
+    r = 6371
+
+    return np.round((c * r),0)
+    
+
+
+def create_record(inputs:dict, dataset:dict,model):
+    unique_geo = dataset['unique_geo']
+    seller = dataset['seller']
+    product = dataset['product']
+
+    cust_row = unique_geo[unique_geo['geolocation_zip_code_prefix']==inputs['cust_zip_code_inp']]
+    customer_latitude,customer_longitude,customer_state = cust_row[['lat','lng','state']].values[0]
+
+    #fetch the select product
+    seller_row = product[(product['category_formated']==inputs['category_inp']) & 
+                         (product['product_id'] ==inputs['product_inp']) & 
+                         (product['seller_id'] ==inputs['seller_id_inp']) ]
+    seller_cols =  ['seller_state','seller_latitude','seller_longitude','raw_category','product_volume_cm3','product_weight_g']
+    seller_state,seller_latitude,seller_longitude,raw_category,product_volume_cm3,product_weight_g = seller_row[seller_cols].values[0]
+
+
+
+    # seller performance features
+    seller_performce_row = seller[seller['seller_id'] ==inputs['seller_id_inp']]
+    seller_timely_delivery_avg,seller_previous_order_count = seller_performce_row[['seller_timely_delivery_avg','seller_previous_order_count']].values[0]
+    
+
+    features ={}
+    features['is_same_state'] = (1 if (customer_state == seller_state) else 0)
+    features['category'] = raw_category
+    features['payment_type'] = inputs['payment_type_inp']
+    features['n_unique_sellers'] = 1
+    features['payment_installments'] = inputs['payment_installments_inp']
+    features['total_price'] = inputs['total_price_inp']
+    features['n_items'] = inputs['item_quantity_inp']
+
+    #  # Core logistics
+    features['total_product_weight_g'] = (product_weight_g * inputs['item_quantity_inp'])
+    features['total_volume'] = (product_volume_cm3* inputs['item_quantity_inp'])
+    features['weight_per_item'] = product_weight_g
+    features['volume_per_item'] = product_volume_cm3
+
+
+
+    features['delivery_distance'] = calculate_distance(customer_latitude,customer_longitude,seller_latitude,seller_longitude)
+    features['freight_ratio'] = inputs['total_freight_inp'] / (inputs['total_price_inp'] + 1)
+    features['payment_value'] = inputs['payment_value_inp']
+
+    features['logistics_complexity'] =1
+
+    
+    features['seller_timely_delivery_avg'] = seller_timely_delivery_avg
+    features['seller_previous_order_count'] = seller_previous_order_count
+    features['distance_x_weight'] = (features['delivery_distance'] * features['total_product_weight_g'])
+    features_df = pd.DataFrame([features])
+    print(f'shape of the features is {features_df.shape}')
+    y_pred = model.predict(features_df)
+    y_pred= np.expm1(y_pred)
+    y_pred = np.round(y_pred)[0]
+    st.session_state.predicted_days = int( y_pred)
+    print(f'{y_pred} Delivery days required.')

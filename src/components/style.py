@@ -226,5 +226,60 @@ def load_css():
         background: linear-gradient(90deg, var(--accent), var(--accent2));
     }
     
+
+    .result-card {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    border-radius: 20px;
+    padding: 28px 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.result-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+.result-title {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+.result-days {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin: 10px 0;
+}
+.result-label {
+    font-size: 1.2rem;
+    color: #cbd5f5;
+}
+
+# Submit button.
+div.stButton > button {
+    background: #0f172a;
+    color: #22c55e;
+    border: 2px solid #22c55e;
+    border-radius: 14px;
+    padding: 14px 24px;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: all 0.25s ease;
+  box-shadow: 0 0 10px rgba(91, 85, 188, 0.3);
+}
+
+div.stButton > button:hover {
+   background: #c8e177;
+  color: #0f172a;
+  box-shadow: 0 0 25px rgba(167, 210, 74, 0.452);
+
+}
+div.stButton > button:disabled {
+    background: #374151;
+    color: #9ca3af;
+    box-shadow: none;
+    cursor: not-allowed;
+}
         </style>
         """ ,unsafe_allow_html=True )

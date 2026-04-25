@@ -227,7 +227,6 @@ class Data_Pipeline():
         # ── Cross-state multi-seller complexity ────────────────────────────────────
         df['logistics_complexity'] = df['n_unique_sellers'] * df['n_unique_states']
 
-
         # add the seller performance columns.
         df = self.__add_seller_performance(df)
 
