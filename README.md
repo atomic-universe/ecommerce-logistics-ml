@@ -7,7 +7,10 @@ This project is a complete end-to-end Data Science and Business Intelligence sys
 The system predicts e-commerce delivery time using Machine Learning and provides a fully interactive Streamlit Analytics Dashboard for business insights and decision-making.
 
 ## Live Here:
-https://vighnesh-ecommerce-logitst-ml-app.streamlit.app/
+https://vighnesh-ecommerce-logitst-ml-app.streamlit.app
+
+### Screenshot
+![image_alt](https://github.com/VighneshSankpal/ecommerce-logistics-ml/blob/main/app_screenshot.png)
 
 The project combines:
 
