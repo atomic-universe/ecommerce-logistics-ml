@@ -335,13 +335,13 @@ Used evaluation metrics:
 ## Clone Repository
 
 ```bash
-git clone <your-github-repository-link>
+git clone https://github.com/VighneshSankpal/ecommerce-logistics-ml.git
 ```
 
 ## Move into Project Folder
 
 ```bash
-cd Ecommerce-Delivery-Prediction
+cd ecommerce-logistics-ml
 ```
 
 ## Create Virtual Environment
