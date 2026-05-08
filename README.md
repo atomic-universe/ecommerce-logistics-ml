@@ -355,13 +355,13 @@ python -m venv env
 ### Windows
 
 ```bash
-venv\Scripts\activate
+env\Scripts\activate
 ```
 
 ### Linux / Mac
 
 ```bash
-source venv/bin/activate
+source env/bin/activate
 ```
 
 ## Install Dependencies
