@@ -168,7 +168,14 @@ class Prediction_Model:
 
         model_pipeline.fit(x_train,y_train)
         save_path = os.path.join('models','prediction_model.pkl')
-        joblib.dump(model_pipeline,save_path, compress=3 )
+        if not os.path.exists('models'):
+            os.makedirs('models')
+        try:
+            joblib.dump(model_pipeline,save_path, compress=3 )
+        except FileNotFoundError as e:
+            print("Prediction model saved Directory not exist.")
+            print(e)    
+            
         print("model saved successfully.")
 
 
