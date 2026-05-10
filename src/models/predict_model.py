@@ -118,14 +118,14 @@ class Prediction_Model:
         x_test.loc[:,'category'] = x_test['category'].where(x_test['category'].isin(top_cols_value),'other')
 
 
-        return (x_train,x_test,y_train_transformed,y_test_transformed)
+        return (x_train,x_test,y_train,y_test)
     
 
 
     def build_model(self):
 
 
-        x_train,x_test,y_train_transformed,y_test_transformed =  self.__data_preprocessing()
+        x_train,x_test,y_train,y_test =  self.__data_preprocessing()
         print(f'shape of x_train is {x_train.shape}')
         skwed_num_pipeline = Pipeline(steps=[
             ('imputation',SimpleImputer(strategy='median')),
@@ -163,10 +163,10 @@ class Prediction_Model:
 
         model_pipeline = Pipeline(steps=[
             ('preprocessing', preprocessor),
-            ('model', RandomForestRegressor(n_estimators=170,max_depth=15, random_state=42))
+            ('model', RandomForestRegressor(n_estimators=200,min_samples_leaf=4,max_depth=15, random_state=42))
         ])
 
-        model_pipeline.fit(x_train,y_train_transformed)
+        model_pipeline.fit(x_train,y_train)
         save_path = os.path.join('models','prediction_model.pkl')
         joblib.dump(model_pipeline,save_path, compress=3 )
         print("model saved successfully.")
