@@ -639,8 +639,8 @@ fig9.update_layout(
 st.plotly_chart(fig9, use_container_width=True)
  
 
-# ── Row 6: Sellers Distriubtion on map ────────────────────
-st.html('<div class="section-header">🌎 Seller Distribution on map </div>')
+# ── Row 6: Customer Distriubtion on map ────────────────────
+st.html('<div class="section-header">🌎 Customer Distribution on map </div>')
 
 
 
@@ -684,7 +684,7 @@ st.markdown("""
 <div class="insight-box">
     💡 <strong>Key Insight:</strong>
     São Paulo (SP) dominates in total revenue and order volume due to its
-    dense population and proximity to most sellers.
+    dense population and proximity to most Customer.
     However, <strong>average order value varies significantly by state</strong>
     — northern states tend to have higher average values despite fewer orders,
     possibly due to higher freight costs being included in payment totals.
