@@ -680,14 +680,14 @@ st.dataframe(
     height=320
 )
  
-st.markdown("""
-<div class="insight-box">
-    💡 <strong>Key Insight:</strong>
-    São Paulo (SP) dominates in total revenue and order volume due to its
-    dense population and proximity to most Customer.
-    However, <strong>average order value varies significantly by state</strong>
-    — northern states tend to have higher average values despite fewer orders,
-    possibly due to higher freight costs being included in payment totals.
-</div>
-""", unsafe_allow_html=True)
+# st.markdown("""
+# <div class="insight-box">
+#     💡 <strong>Key Insight:</strong>
+#     São Paulo (SP) dominates in total revenue and order volume due to its
+#     dense population and proximity to most Customer.
+#     However, <strong>average order value varies significantly by state</strong>
+#     — northern states tend to have higher average values despite fewer orders,
+#     possibly due to higher freight costs being included in payment totals.
+# </div>
+# """, unsafe_allow_html=True)
  
