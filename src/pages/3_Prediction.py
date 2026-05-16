@@ -226,7 +226,7 @@ dataset ={
 
 order_date_col,_,_ = st.columns(3)
 with order_date_col:
-    order_date_inp =  st.date_input("Order Column")
+    order_date_inp =  st.date_input("Order Date")
 
 # predict_delivery = st.button("Predict.",disabled=is_invalid_zip_code,on_click=create_record,
 #                              args=(inputs,dataset,prediction_model))
